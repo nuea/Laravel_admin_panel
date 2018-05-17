@@ -12,7 +12,25 @@
 
     </head>
     <body>
-        <div id="loginbox">            
+        <div id="loginbox">
+            @if ($message = Session::get('falsh_massage_error'))
+                <div class="alert alert-error" role="alert">
+                    <strong>{{ $message }}</strong> 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif 
+
+            @if ($message = Session::get('falsh_massage_success'))
+                <div class="alert alert-success" role="alert">
+                    <strong>{{ $message }}</strong> 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif 
+
             <form id="loginform" class="form-vertical" method="POST" action="{{url('admin')}}">{{ csrf_field() }}
 				 <div class="control-group normal_text"> <h3><img src="{{asset('images/backend_images/logo.png')}}" alt="Logo" /></h3></div>
                 <div class="control-group">
@@ -51,7 +69,8 @@
         </div>
         
         <script src="{{asset('js/backend_js/jquery.min.js')}}"></script>  
-        <script src="{{asset('js/backend_js/matrix.login.js')}}"></script> 
+        <script src="{{asset('js/backend_js/matrix.login.js')}}"></script>   
+        <script src="{{asset('js/backend_js/bootstrap.min.js')}}"></script> 
     </body>
 
 </html>
