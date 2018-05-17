@@ -13,6 +13,7 @@ class AdminController extends Controller
         {
             $data = $request->input();
             if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password'],'admin'=>'1'])){
+                //Session::put('adminSession',$data['email']);
                 return redirect('admin/dashboard');
             }else{
                 return redirect('admin')->with('falsh_massage_error', 'Invalid Email or Password!');
@@ -22,6 +23,11 @@ class AdminController extends Controller
     }
 
     public function dashboard(){
+        /*if(Session::has('adminSession')){
+            //Perform all dashboard tasks
+        }else{
+            return redirect('admin')->with('falsh_massage_error', 'Please login to access');
+        }*/
         return view('admin.dashboard');
     }
 

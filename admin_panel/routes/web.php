@@ -17,8 +17,13 @@ Route::get('/', function () {
 
 //Route::get('/admin','AdminController@login');
 Route::match(array('GET', 'POST'),'/admin','AdminController@login');
-Route::get('/admin/dashboard','AdminController@dashboard');
+//Route::get('/admin/dashboard','AdminController@dashboard');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout', 'AdminController@logout');
+
+Route::group(['middleware' => ['auth']],function(){
+    //Move route admin/dashboard in here.
+    Route::get('/admin/dashboard','AdminController@dashboard');
+});

@@ -19,6 +19,8 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check()) {
             return redirect('/home');
+        }else{
+            return redirect()->action('AdminController@login')->with('falsh_massage_error','Please login to access');
         }
 
         return $next($request);
