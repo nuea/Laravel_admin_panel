@@ -26,4 +26,5 @@ Route::get('/logout', 'AdminController@logout');
 Route::group(['middleware' => ['auth']],function(){
     //Move route admin/dashboard in here.
     Route::get('/admin/dashboard','AdminController@dashboard');
+    Route::get('/admin/settings','AdminController@settings'); 
 });

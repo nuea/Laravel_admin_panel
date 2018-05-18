@@ -25,7 +25,7 @@
     
     <!-- include footer -->
     @include('layouts.adminLayout.admin_footer')
-
+<!--
 <script src="{{asset('js/backend_js/excanvas.min.js')}}"></script> 
 <script src="{{asset('js/backend_js/jquery.min.js')}}"></script> 
 <script src="{{asset('js/backend_js/jquery.ui.custom.js')}}"></script> 
@@ -72,5 +72,15 @@ function resetMenu() {
    document.gomenu.selector.selectedIndex = 2;
 }
 </script>
+-->
+<script src="{{asset('js/backend_js/jquery.min.js')}}"></script> 
+<script src="{{asset('js/backend_js/jquery.ui.custom.js')}}"></script> 
+<script src="{{asset('js/backend_js/bootstrap.min.js')}}"></script> 
+<script src="{{asset('js/backend_js/jquery.uniform.js')}}"></script> 
+<script src="{{asset('js/backend_js/select2.min.js')}}"></script> 
+<script src="{{asset('js/backend_js/jquery.validate.js')}}"></script> 
+<script src="{{asset('js/backend_js/matrix.js')}}"></script> 
+<script src="{{asset('js/backend_js/matrix.form_validation.js')}}"></script>
+
 </body>
 </html>
