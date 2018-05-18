@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Session;
-
+use App\User;
+use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
     public function login(Request $request){
@@ -13,7 +14,6 @@ class AdminController extends Controller
         {
             $data = $request->input();
             if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password'],'admin'=>'1'])){
-                //Session::put('adminSession',$data['email']);
                 return redirect('admin/dashboard');
             }else{
                 return redirect('admin')->with('falsh_massage_error', 'Invalid Email or Password!');
@@ -23,16 +23,22 @@ class AdminController extends Controller
     }
 
     public function dashboard(){
-        /*if(Session::has('adminSession')){
-            //Perform all dashboard tasks
-        }else{
-            return redirect('admin')->with('falsh_massage_error', 'Please login to access');
-        }*/
         return view('admin.dashboard');
     }
 
     public function settings(){
         return view('admin.settings');
+    }
+    
+    public function chkPassword(Request $request){
+        $data = $request->all();
+        $current_password = $data['current_pwd'];
+        $check_password = User::where(['admin'=>'1'])->first();
+        if(Hash::check($current_password,$check_password->password)){
+            echo "true"; die;
+        }else {
+            echo "false"; die;
+        }
     }
 
     public function logout(){
