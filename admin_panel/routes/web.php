@@ -25,5 +25,7 @@ Route::group(['middleware' => ['auth']],function(){
     //Move route admin/dashboard in here.
     Route::get('/admin/dashboard','AdminController@dashboard');
     Route::get('/admin/settings','AdminController@settings'); 
-	Route::get('/admin/check-pwd','AdminController@chkPassword');
+    Route::get('/admin/check-pwd','AdminController@chkPassword');
+    
+    Route::match(['get','post'],'/admin/update-pwd','AdminController@updatePassword');
 });
