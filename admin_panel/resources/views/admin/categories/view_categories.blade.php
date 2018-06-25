@@ -36,6 +36,7 @@
                     <th>Category</th>
                     <th>Category Name</th>
                     <th>Description</th>
+                    <th>Category Level</th>
                     <th>Category URL</th>
                     <th>Actions</th>
                   </tr>
@@ -46,6 +47,7 @@
                         <td>{{$category->id}}</td>
                         <td>{{$category->name}}</td>
                         <td>{{$category->description}}</td>
+                        <td>{{$category->parent_id}}</td>
                         <td>{{$category->url}}</td>
                         <td class="center">
                           <a href="{{url('/admin/edit-category/'.$category->id)}}" class="btn btn-primary btn-mini">Edit</a> 
