@@ -7,7 +7,7 @@
             <a href="#">Categories</a> 
             <a href="#" class="current">Add Category</a>
         </div>
-        <h1>Form validation</h1>
+        <h1>Categories</h1>
     </div>
     <div class="container-fluid"><hr>
         <div class="row-fluid">
