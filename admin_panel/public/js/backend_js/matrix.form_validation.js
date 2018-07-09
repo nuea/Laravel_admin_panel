@@ -135,6 +135,37 @@ $(document).ready(function(){
 			$(element).parents('.control-group').addClass('success');
 		}
 	});
+
+	// Edit Product Validation
+	$("#edit_product").validate({
+		rules:{
+			category_id:{
+				required:true
+			},
+			product_name:{
+				required:true
+			},
+			product_code:{
+				required:true
+			},
+			product_color:{
+				required:true
+			},
+			price:{
+				required:true,
+				number:true
+			}
+		},
+		errorClass: "help-inline",
+		errorElement: "span",
+		highlight:function(element, errorClass, validClass) {
+			$(element).parents('.control-group').addClass('error');
+		},
+		unhighlight: function(element, errorClass, validClass) {
+			$(element).parents('.control-group').removeClass('error');
+			$(element).parents('.control-group').addClass('success');
+		}
+	});
 	
 	$("#number_validate").validate({
 		rules:{
@@ -202,4 +233,39 @@ $(document).ready(function(){
 		}
 	});
 
+	
+
+	/*$("#delProduct").click(function(){
+		//alert('test');
+		if(confirm('Are you sure you want to delete this Product?')){
+			return true;
+		}
+		else{
+			return false;
+		}
+	});*/
+
+	$(document).on('click','.deleteRecord',function(e){
+		var id=$(this).attr('rel');
+		var delFunction=$(this).attr('rel1');
+		//alert(delFunction);
+		swal({
+			title: 'Are you sure?',
+			text: 'You will not be able to recover this record again!',
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonClass: "btn-danger",		
+			confirmButtonText: 'Yes, delete it!',
+			cancelButtonText: "No, cancel!",
+			confirmButtonClass: "btn btn-success",
+			cancelButtonClass: "btn btn-danger",
+			buttonsStyling: false,
+			showCloseButton: true,
+		  },
+		function(){
+			window.location.href="/admin/"+delFunction+"/"+id;
+		});
+	});
 });
