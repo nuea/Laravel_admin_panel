@@ -7,6 +7,7 @@ use Auth;
 use Session; 
 use App\Category; 
 use App\Product; 
+use App\ProductsAttribute;
 use Illuminate\Support\Facades\Input; 
 use Image; 
 
@@ -150,5 +151,36 @@ class ProductsController extends Controller
             Product::where(['id'=>$id])->delete();
             return redirect()->back()->with('flash_message_success','Product Delete Successfully!');
         }
+    }
+
+    public function addAttributes(Request $request, $id=null){
+        $productDetails = Product::with('attributes')->where(['id'=>$id])->first();
+        //$productDetails = json_decode(json_encode($productDetails));        
+        //echo "<pre>"; print_r($productDetails); die;
+
+        if($request->isMethod('post')){
+            $data = $request->all();
+             //echo "<pre>"; print_r($data); die;
+            foreach($data['sku'] as $key => $val){
+                if(!empty($val)){
+                    $attribute = new ProductsAttribute;
+                    $attribute->product_id = $id;
+                    $attribute->sku = $val;
+                    $attribute->size = $data['size'][$key];
+                    $attribute->price = $data['price'][$key];
+                    $attribute->stock = $data['stock'][$key];
+                    $attribute->save();
+                }
+            }
+            return redirect('/admin/add-attributes/'.$id)->with('flash_message_success','Product Attribute nas been added Successfully!');
+        }
+        return view('admin.products.add_attributes')->with(compact('productDetails'));
+    }
+
+    public function deleteAttribute($id=null){
+        //if(!empty($id)){
+            ProductsAttribute::where(['id'=>$id])->delete();
+            return redirect()->back()->with('flash_message_success','Product Attribute Delete Successfully!');
+        //}
     }
 }
